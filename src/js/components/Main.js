@@ -1,40 +1,30 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Article from 'grommet/components/Article';
 
 import App from 'grommet/components/App';
-import Split from 'grommet/components/Split';
-
-import NotFound from '../screens/NotFound';
+import TopHeader from './Header';
 
 class Main extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <App centered={false}>
-        <Router>
-          <Split
-            priority={priority}
-            flex="right"
-            onResponsive={this._onResponsive}
-          >
-            <Switch />
-          </Split>
-        </Router>
+        <Article>
+          <Router>
+            <div>
+              <Route path='/' component={TopHeader} />
+              <Switch />
+            </div>
+          </Router>
+        </Article>
       </App>
     );
   }
 }
 
-Main.propTypes = {
-  dispatch: PropTypes.func.isRequired
-};
+// Main.propTypes = {   dispatch: PropTypes.func.isRequired };
 
-const select = state => ({
-  nav: state.nav
-});
+const select = state => ({ nav: state.nav });
 
 export default connect(select)(Main);
