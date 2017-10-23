@@ -5,6 +5,7 @@ import Article from 'grommet/components/Article';
 
 import App from 'grommet/components/App';
 import TopHeader from './Header';
+import Home from './Home';
 
 class Main extends Component {
   render() {
@@ -13,8 +14,10 @@ class Main extends Component {
         <Article>
           <Router>
             <div>
-              <Route path='/' component={TopHeader} />
-              <Switch />
+              <Route path="*" component={TopHeader} />
+              <Switch>
+                <Route path="/" exact component={Home} />
+              </Switch>
             </div>
           </Router>
         </Article>
